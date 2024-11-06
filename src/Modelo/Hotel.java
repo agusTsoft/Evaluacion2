@@ -9,9 +9,9 @@ public class Hotel extends Hospederia{
     }
 
     //-------------------  Metodos  ---------------------------
-    private double adicional(){
-        if(isConDesayuno() && isEsFumador()){
-            return subtotal()*(30/100);
+    public double adicional(){
+        if(conDesayuno && esFumador){
+            return subtotal()*(30.0/100);
         }else{
             return 0;
         }

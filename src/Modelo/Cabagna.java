@@ -11,6 +11,7 @@ public class Cabagna extends Hospederia{
     //-------------------  Metodos  ---------------------------
     public void IncrementaValorBase(){
         if (getCapacidad() > 5){
+            System.out.println("Se incrementa el valor base (Capacidad > 5) \n");
             setValorBaseNoche(getValorBaseNoche()*1.18);
         }else{
             System.out.println("No se incrementa el valor base");

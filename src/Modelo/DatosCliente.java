@@ -1,20 +1,20 @@
 package Modelo;
 
 public class DatosCliente {
-    private int CUIT;
+    private int DNI;
     private String Nombre;
 
-    public DatosCliente(int CUIT, String nombre) {
-        this.CUIT = CUIT;
+    public DatosCliente(int DNI, String nombre) {
+        this.DNI = DNI;
         Nombre = nombre;
     }
     //-------------------  Getters y Setters  ---------------------------
-    public int getCUIT() {
-        return CUIT;
+    public int getDNI() {
+        return DNI;
     }
 
-    public void setCUIT(int CUIT) {
-        this.CUIT = CUIT;
+    public void setDNI(int DNI) {
+        this.DNI = DNI;
     }
 
     public String getNombre() {
