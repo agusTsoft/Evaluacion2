@@ -1,5 +1,7 @@
 package Vista;
 
+import Modelo.DatosCliente;
+
 import static Controlador.Controller.*;
 import static Controlador.Validacion.*;
 
@@ -46,28 +48,68 @@ public class Vista {
             switch (opcion){
                 case 1:
                     menuAlojamiento();
+                    break;
+
                 case 2:
                     mostrarDatos();
+                    break;
+
                 case 3:
                     datosCliente();
+                    break;
+
+                case 4:
+                    totalAdicional();
+                    break;
+
+                case 5:
+                    totalDescontado();
+                    break;
+
+                case 6:
+                    cantMedios();
+                    break;
+
+                case 7:
+                    valorACancelar();
+                    break;
+
+                case 8:
+                    System.out.println("\n\t\t Saliendo del sistema ..... ");
+                    break;
             }
         }while(opcion!=8);
 
     }
 
-    //--------- Opcion 1 // Ingresar Alojamiento -------------------
+    //--------- Opcion 1 // Ingresar Alojamiento ------------------- LISTO
     public void menuAlojamiento(){
         System.out.println("---------- Menu Alojamiento -----------");
-        System.out.println("¿Donde se desea hospedar?");
-        int opcion = validaInt("\n1. Hotel\n2. Cabagna\n3. Carpa \n---> ");
-        switch (opcion){
-            case 1:
-                menuHotel();
-            case 2:
-                menuCabagna();
-            case 3:
-                menuCarpa();
-        }
+        int opcion;
+        do{
+            System.out.println("¿Donde se desea hospedar?");
+            opcion = validaInt("\n1. Hotel\n2. Cabagna\n3. Carpa \n4. Volver\n---> ");
+            switch (opcion){
+                case 1:
+                    menuHotel();
+                    break;
+
+                case 2:
+                    menuCabagna();
+                    break;
+
+                case 3:
+                    menuCarpa();
+                    break;
+
+                case 4:
+                    break;
+
+                default:
+                    System.out.println("Ingrese una opcion del menu ....");
+            }
+        }while(opcion != 4);
+
     }
 
     public void menuHotel(){
@@ -84,7 +126,9 @@ public class Vista {
         int capacidad = validaInt("Capacidad maxima de la habitacion: ");
         boolean esFumador = validaTF("Es fumador? \n1. Si\t2. No");
         boolean conDesayuno = validaTF("Es con desayuno? \n1. Si\t2. No");
-        System.out.println("\nHotel ingresado con EXITO\n");
+
+        ingresoHotel(valorNoche, tipoTemporada, dni, nom, cantNoches, capacidad, esFumador, conDesayuno);
+
     }
 
     public void menuCabagna(){
@@ -93,7 +137,7 @@ public class Vista {
         int dni2 = validaDni("DNI: ");
         String nom2 = validaNombre("Nombre: ");
 
-        //Daos del alojamiento
+        //Datos del alojamiento
         System.out.println("-------------- Datos del Alojamiento ----------------");
         double valorNoche = validaDouble("Valor base por noche: ");
         String tipoTemporada = validaTemporada("Tipo de temporada: \n1. Baja\t2. Media\t3. Alta\n---> ");
@@ -101,14 +145,15 @@ public class Vista {
         int capacidad = validaInt("Capacidad maxima de la habitacion: ");
         boolean esFumador = validaTF("Es fumador? \n1. Si\t2. No");
         boolean conChimenea = validaTF("Es con chimenea? \n1. Si\t2. No");
-        System.out.println("\nCabagna ingresada con EXITO\n");
+
+        ingresoCabagna(valorNoche, tipoTemporada, dni2, nom2, cantNoches, capacidad, esFumador, conChimenea);
     }
 
     public void menuCarpa(){
         //Datos del cliente
         System.out.println("-------------- Datos Cliente ----------------");
-        int dni2 = validaDni("DNI: ");
-        String nom2 = validaNombre("Nombre: ");
+        int dni3 = validaDni("DNI: ");
+        String nom3 = validaNombre("Nombre: ");
 
         //Daos del alojamiento
         System.out.println("-------------- Datos del Alojamiento ----------------");
@@ -116,35 +161,49 @@ public class Vista {
         String tipoTemporada = validaTemporada("Tipo de temporada: \n1. Baja\t2. Media\t3. Alta\n---> ");
         int cantNoches = validaInt("Cantidad de noches a hospedarse: ");
         int cantPersonas = validaInt("Capacidad maxima de personas de la carpa: ");
-        System.out.println("\nCarpa ingresada con EXITO\n");
+
+        ingresoCarpa(dni3, nom3, valorNoche, tipoTemporada, cantNoches, cantPersonas);
 
     }
 
-    //--------- Opcion 2 // Mostrar Datos -------------------
+    //--------- Opcion 2 // Mostrar Datos ------------------- LISTO
     public void mostrarDatos(){
         int opcion;
         do {
             System.out.println("----------- Medios de Alojamiento ------------");
             System.out.println("1. Hoteles\n2. Cabagnas\n3. Carpas\n4. Volver");
-            opcion = validaInt("¿De que tipo de medio desea mostrar los datos de los existentes?\n---> ");
+            opcion = validaInt("¿De que tipo de medio desea mostrar los datos?\n---> ");
             switch (opcion) {
                 case 1:
-                    //
+                    System.out.println("----------- Mostrando Datos de los Hoteles -------------");
+                    Datos(opcion);
+                    break;
+
                 case 2:
-                    //
+                    System.out.println("----------- Mostrando Datos de los Hoteles -------------");
+                    Datos(opcion);
+                    break;
+
                 case 3:
-                    //
+                    System.out.println("----------- Mostrando Datos de los Hoteles -------------");
+                    Datos(opcion);
+                    break;
+
+                case 4:
+                    break;
+
                 default:
                     System.out.println("Ingrese una opcion del menu...");
+                    break;
             }
         }while (opcion != 4);
     }
 
-    //--------- Opcion 3 // Datos de un cliente -------------------
+    //--------- Opcion 3 // Datos de un cliente ------------------- LISTO
     public void datosCliente(){
         System.out.println("----------- Datos de un cliente ------------");
         int dni = validaDni("Ingrese el dni del cliente: \n---> ");
-        //Enviar DNI a controlador y buscarlo
+        buscaClientes(dni);
     }
 
     //--------- Opcion 4 // Total adicional -------------------
@@ -161,7 +220,7 @@ public class Vista {
         System.out.println("El valor total de descuento a los medios\nde alojamiento es de: $" + acum);
     }
 
-    //--------- Opcion 6 // Cantidad de medios de alojamiento -------------------
+    //--------- Opcion 6 // Cantidad de medios de alojamiento -------------------  LISTO
     public void cantMedios(){
         System.out.println("----------- Cantidad de medios de alojamiento ------------");
         int opcion;
@@ -171,12 +230,25 @@ public class Vista {
             switch (opcion) {
                 case 1:
                     //
+                    cantidad(opcion);
+                    break;
+
                 case 2:
                     //
+                    System.out.println("Opcion 2");
+                    break;
+
                 case 3:
                     //
+                    System.out.println("Opcion 3");
+                    break;
+
+                case 4:
+                    break;
+
                 default:
                     System.out.println("Ingrese una opcion del menu...");
+                    break;
             }
         }while (opcion != 4);
 
