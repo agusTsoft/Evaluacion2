@@ -24,6 +24,7 @@ public class Inventario {
             }
         }else{
             Medios.add(medio);
+            Clientes.add(medio.getDatosCliente());
             BDD.put(medio.getDatosCliente().getDNI(), medio);
         }
     }

@@ -42,7 +42,7 @@ public class Controller {
                     if(cont == 0){
                         System.out.println("No se regsitraron Hoteles");
                     }else {
-                        System.out.println("En total se encontraron " + cont + "Hoteles registrados");
+                        System.out.println("En total se encontraron " + cont + " Hoteles registrados");
                     }
                     break;
 
@@ -55,7 +55,7 @@ public class Controller {
                     if(cont == 0){
                         System.out.println("No se regsitraron Cabagnas");
                     }else {
-                        System.out.println("En total se encontraron " + cont + "Cabagnas registradas");
+                        System.out.println("En total se encontraron " + cont + " Cabagnas registradas");
                     }
                     break;
 
@@ -68,7 +68,7 @@ public class Controller {
                     if(cont == 0){
                         System.out.println("No se regsitraron Carpas");
                     }else {
-                        System.out.println("En total se encontraron " + cont + "Carpas registradas");
+                        System.out.println("En total se encontraron " + cont + " Carpas registradas");
                     }
                     break;
 
@@ -197,11 +197,70 @@ public class Controller {
     }
 
     public static double acumuladorAdicional(){
-
-        return 0;
+        if (!Medios.isEmpty()){
+            double acum = 0;
+            ArrayList<Hotel> hoteles = new ArrayList<>();
+            for (MedioDeAlojamiento i : Medios){
+                if (i instanceof Hotel){
+                    hoteles.add((Hotel) i);
+                }
+            }
+            for (Hotel j : hoteles){
+                acum += j.adicional();
+            }
+            return acum;
+        }else {
+            System.out.println("No hay clientes registrados");
+            return 0;
+        }
     }
 
     public static double acumuladorDescuento(){
-        return 0;
+        if (!Medios.isEmpty()){
+            double acum = 0;
+            for (MedioDeAlojamiento j : Medios){
+                acum += j.bonoDescuento();
+            }
+            return acum;
+        }else {
+            System.out.println("No hay clientes registrados");
+            return 0;
+        }
+    }
+
+    public static void totalCancelar(Integer dni){
+        if (!Clientes.isEmpty()){
+            ArrayList<Integer> dnis = new ArrayList<>(BDD.keySet());
+            if (dnis.contains(dni)){
+                MedioDeAlojamiento aux = BDD.get(dni);
+                System.out.println("--------- Informacion del pago ---------");
+                System.out.println("Cantidad de noches: " + aux.getCantNoches());
+                System.out.println("Valor por noche: $" + aux.getValorBaseNoche());
+                if (aux instanceof Hotel){
+                    System.out.println("Adicional: $" + ((Hotel) aux).adicional());
+                }
+                System.out.println("Descuento: $" + aux.bonoDescuento());
+                System.out.println("Valor a cancelar total: " + aux.valorACancelar());
+            }
+        }else{
+            System.out.println("No hay clientes registrados");
+        }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

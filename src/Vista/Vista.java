@@ -206,14 +206,14 @@ public class Vista {
         buscaClientes(dni);
     }
 
-    //--------- Opcion 4 // Total adicional -------------------
+    //--------- Opcion 4 // Total adicional ------------------- LISTO
     public void totalAdicional(){
         System.out.println("----------- Total adicional ------------");
         double acum = acumuladorAdicional();
         System.out.println("El valor total adicional a los medios de alojamiento es de: $" + acum);
     }
 
-    //--------- Opcion 5 // Total descontado -------------------
+    //--------- Opcion 5 // Total descontado ------------------- LISTO
     public void totalDescontado(){
         System.out.println("----------- Total descontado ------------");
         double acum = acumuladorDescuento();
@@ -229,18 +229,15 @@ public class Vista {
             opcion = validaInt("¿De que tipo de medio desea saber la cantidad almacenada?\n---> ");
             switch (opcion) {
                 case 1:
-                    //
                     cantidad(opcion);
                     break;
 
                 case 2:
-                    //
-                    System.out.println("Opcion 2");
+                    cantidad(opcion);
                     break;
 
                 case 3:
-                    //
-                    System.out.println("Opcion 3");
+                    cantidad(opcion);
                     break;
 
                 case 4:
@@ -254,10 +251,11 @@ public class Vista {
 
     }
 
-    //--------- Opcion 7 // Valor a cancelar determinado -------------------
-    public void valorACancelar(){
+    //--------- Opcion 7 // Valor a cancelar determinado ------------------- LISTO
+    public void valorACancelar() {
         System.out.println("----------- Valor a cancelar determinado ------------");
-
+        int dni = validaDni("Ingrese el dni del cliente de quien quiere saber el valor a cancelar: \n---> ");
+        totalCancelar(dni);
     }
 
 }
