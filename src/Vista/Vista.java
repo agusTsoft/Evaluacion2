@@ -43,7 +43,6 @@ public class Vista {
             System.out.println("6. Cantidad de medios de alojamiento");
             System.out.println("7. Valor a cancelar determinado");
             System.out.println("8. Salir del sistema");
-            System.out.println("X. Incrementar un valor base (no hace nada jaja - jaja)");
             opcion = validaInt("\nIngrese una opcion:\n---> ");
             switch (opcion){
                 case 1:
@@ -77,12 +76,16 @@ public class Vista {
                 case 8:
                     System.out.println("\n\t\t Saliendo del sistema ..... ");
                     break;
+
+                default:
+                    System.out.println("Ingrese una opcion del menu ...");
+                    break;
             }
         }while(opcion!=8);
 
     }
 
-    //--------- Opcion 1 // Ingresar Alojamiento ------------------- LISTO
+    //--------- Opcion 1 // Ingresar Alojamiento -------------------
     public void menuAlojamiento(){
         System.out.println("---------- Menu Alojamiento -----------");
         int opcion;
@@ -166,7 +169,7 @@ public class Vista {
 
     }
 
-    //--------- Opcion 2 // Mostrar Datos ------------------- LISTO
+    //--------- Opcion 2 // Mostrar Datos -------------------
     public void mostrarDatos(){
         int opcion;
         do {
@@ -199,28 +202,28 @@ public class Vista {
         }while (opcion != 4);
     }
 
-    //--------- Opcion 3 // Datos de un cliente ------------------- LISTO
+    //--------- Opcion 3 // Datos de un cliente -------------------
     public void datosCliente(){
         System.out.println("----------- Datos de un cliente ------------");
         int dni = validaDni("Ingrese el dni del cliente: \n---> ");
         buscaClientes(dni);
     }
 
-    //--------- Opcion 4 // Total adicional ------------------- LISTO
+    //--------- Opcion 4 // Total adicional -------------------
     public void totalAdicional(){
         System.out.println("----------- Total adicional ------------");
         double acum = acumuladorAdicional();
         System.out.println("El valor total adicional a los medios de alojamiento es de: $" + acum);
     }
 
-    //--------- Opcion 5 // Total descontado ------------------- LISTO
+    //--------- Opcion 5 // Total descontado -------------------
     public void totalDescontado(){
         System.out.println("----------- Total descontado ------------");
         double acum = acumuladorDescuento();
         System.out.println("El valor total de descuento a los medios\nde alojamiento es de: $" + acum);
     }
 
-    //--------- Opcion 6 // Cantidad de medios de alojamiento -------------------  LISTO
+    //--------- Opcion 6 // Cantidad de medios de alojamiento -------------------
     public void cantMedios(){
         System.out.println("----------- Cantidad de medios de alojamiento ------------");
         int opcion;
@@ -251,7 +254,7 @@ public class Vista {
 
     }
 
-    //--------- Opcion 7 // Valor a cancelar determinado ------------------- LISTO
+    //--------- Opcion 7 // Valor a cancelar determinado -------------------
     public void valorACancelar() {
         System.out.println("----------- Valor a cancelar determinado ------------");
         int dni = validaDni("Ingrese el dni del cliente de quien quiere saber el valor a cancelar: \n---> ");

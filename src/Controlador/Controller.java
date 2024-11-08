@@ -18,7 +18,7 @@ public class Controller {
 
     public static void ingresoCabagna(double valorNoche, String tipoTemporada, int dni, String nombre, int cantNoches, int capacidad, boolean esFumador, boolean conChimenea){
         DatosCliente cliente1 = new DatosCliente(dni, nombre);
-        Cabagna Cabagna1 = new Cabagna(valorNoche, tipoTemporada, cliente1, cantNoches, capacidad, esFumador, conChimenea);
+        Cabagna Cabagna1 = new Cabagna(incrementaValorBase(valorNoche, capacidad), tipoTemporada, cliente1, cantNoches, capacidad, esFumador, conChimenea);
         almacenaMedio(Cabagna1);
     }
 
@@ -235,7 +235,16 @@ public class Controller {
                 MedioDeAlojamiento aux = BDD.get(dni);
                 System.out.println("--------- Informacion del pago ---------");
                 System.out.println("Cantidad de noches: " + aux.getCantNoches());
-                System.out.println("Valor por noche: $" + aux.getValorBaseNoche());
+                if (aux instanceof Cabagna){
+                    if (((Cabagna) aux).getCapacidad() > 5){
+                        System.out.println("Valor por noche: $" + aux.getValorBaseNoche() + "(" + aux.getValorBaseNoche()/(1.18) + " + 18% --> Capacidad mayor a 5)");
+                    }
+                    else{
+                        System.out.println("Valor por noche: $" + aux.getValorBaseNoche());
+                    }
+                }else{
+                    System.out.println("Valor por noche: $" + aux.getValorBaseNoche());
+                }
                 if (aux instanceof Hotel){
                     System.out.println("Adicional: $" + ((Hotel) aux).adicional());
                 }
@@ -246,8 +255,16 @@ public class Controller {
             System.out.println("No hay clientes registrados");
         }
     }
-}
 
+    public static double incrementaValorBase(double valorBase, int capacidad){
+        if (capacidad>5){
+            return valorBase*(1.18);
+        }else{
+            return valorBase;
+        }
+    }
+
+}
 
 
 
