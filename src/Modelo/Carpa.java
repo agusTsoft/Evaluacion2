@@ -16,4 +16,9 @@ public class Carpa extends MedioDeAlojamiento{
     public void setCantPersonas(int cantPersonas) {
         this.cantPersonas = cantPersonas;
     }
+
+    @Override
+    public double valorACancelar() {
+        return getValorBaseNoche()*getCantNoches();
+    }
 }

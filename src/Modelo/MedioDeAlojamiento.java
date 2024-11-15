@@ -1,6 +1,6 @@
 package Modelo;
 
-public class MedioDeAlojamiento {
+public abstract class MedioDeAlojamiento {
     protected double valorBaseNoche;
     protected String tipoTemporada;
     protected DatosCliente datosCliente;
@@ -26,9 +26,7 @@ public class MedioDeAlojamiento {
             return 0;
         }
     }
-    public double valorACancelar(){
-        return 0;
-    }
+    public abstract double valorACancelar();
 
 
     //-------------------  Getters y Setters  ---------------------------
